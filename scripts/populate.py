@@ -3,14 +3,13 @@
 
 import os
 
-# Begin README.md
 pre = f"""
 <!-- HEADERS -->
 <p align="center">
-  <img width="25%" src="https://github.com/42Willow/dotfiles/blob/main/assets/42willow.gif?raw=true" />
+  <img width="25%" src="https://github.com/42willow.png" />
 </p>
 <p align="center">
-  <b> ~ Willow's wallpaper dump ~ </b>
+  <b> ~ willow's wallpaper dump ~ </b>
 </p>
 
 All wallpapers here are suitable for a 4K monitor :)
@@ -20,7 +19,6 @@ Inspired by [flick0](https://github.com/flick0/kabegami)
 -----------------
 """
 
-# End README.md
 post = """
 -----------------
 
@@ -30,6 +28,14 @@ post = """
 - [DragonDev07 (for more script features)](https://github.com/DragonDev07/Wallpapers/blob/main/markdown.py)
 - [Biohazardia](https://www.deviantart.com/biohazardia/gallery)
 - [Imgur Pixel Art Dump](https://imgur.com/gallery/SELjK)
+- [Kurzgesagt - AI upscaled](https://www.reddit.com/r/kurzgesagt/comments/15pvf7h/kurzgesagt_4k_wallpapers_3840x2160/)
+
+## Tools
+
+- [tineye](https://www.tineye.com/) - Reverse image search
+- [faerber](https://github.com/nekowinston/faerber) - CLI tool to match images to colour schemes
+- [lutgen](https://github.com/ozwaldorf/lutgen-rs) - CLI tool to generate LUTs and apply them to images
+- [pixeldetector](https://github.com/Astropulse/pixeldetector) - CLI tool to downscale and colour palette limit pixel art
 """
 
 def image_embed(title,folder,img):
@@ -55,7 +61,7 @@ def create_readme(directory):
         # Ignore hidden directories and directories without image files
         if top_level_dir.startswith('.') or not has_image_files(top_level_path):
             continue
-        
+
         # Add heading for top-level directories
         readme_content += f"## {top_level_dir}\n\n"
 
@@ -89,7 +95,7 @@ def create_readme(directory):
                 # Add tags above image
                 readme_content += f"**Tags:** {' '.join(tags)}\n\n"
                 readme_content += f"<img src='{file_path}' title='{file_name}'>\n\n"
-                
+
 
             # Close the details tag if we are in a subdirectory
             if relative_path != top_level_dir:

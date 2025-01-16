@@ -1,15 +1,15 @@
 
 <!-- HEADERS -->
 <p align="center">
-  <img width="25%" src="https://github.com/42Willow/dotfiles/blob/main/assets/42willow.gif?raw=true" />
+  <img width="25%" src="https://github.com/42willow.png" />
 </p>
 <p align="center">
-  <b> ~ Willow's wallpaper dump ~ </b>
+  <b> ~ willow's wallpaper dump ~ </b>
 </p>
 
 All wallpapers here are suitable for a 4K monitor :)
 
-Inspired by [flick0](https://github.com/flick0/kabegami)
+Inspired by [flick0](https://github.com/flickowoa/kabegami)
 
 -----------------
 ## Frappe
@@ -461,3 +461,11 @@ Inspired by [flick0](https://github.com/flick0/kabegami)
 - [DragonDev07 (for more script features)](https://github.com/DragonDev07/Wallpapers/blob/main/markdown.py)
 - [Biohazardia](https://www.deviantart.com/biohazardia/gallery)
 - [Imgur Pixel Art Dump](https://imgur.com/gallery/SELjK)
+- [Kurzgesagt - AI upscaled](https://www.reddit.com/r/kurzgesagt/comments/15pvf7h/kurzgesagt_4k_wallpapers_3840x2160/)
+
+## Tools
+
+- [tineye](https://www.tineye.com/) - Reverse image search
+- [faerber](https://github.com/nekowinston/faerber) - CLI tool to match images to colour schemes
+- [lutgen](https://github.com/ozwaldorf/lutgen-rs) - CLI tool to generate LUTs and apply them to images
+- [pixeldetector](https://github.com/Astropulse/pixeldetector) - CLI tool to downscale and colour palette limit pixel art
