@@ -1,3 +1,5 @@
+# TODO)) update for github actions
+
 # This is a merge of https://github.com/DragonDev07/Wallpapers/blob/main/markdown.py and https://github.com/42Willow/dotfiles/blob/45ef591a5cb06454f04b82e17be613e186533edf/hypr/wallpapers/populate.py
 # These are based off https://github.com/flick0/kabegami/blob/master/populate.py
 
