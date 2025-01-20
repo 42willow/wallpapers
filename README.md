@@ -1,3 +1,5 @@
+> [!IMPORTANT]
+> I am currently restructuring this repository to store the generated images in GitHub actions rather than LFS as I am running into bandwidth issues. In the meantime you can download the wallpapers from https://github.com/42willow/walls-bak.
 
 <!-- HEADERS -->
 <p align="center">
