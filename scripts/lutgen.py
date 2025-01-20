@@ -1,9 +1,9 @@
 import os
 import sys
-import re
 import subprocess
 
 CTP_FLAVOURS = ["latte", "frappe", "macchiato", "mocha"]
+
 
 def main():
     if len(sys.argv) != 3:
@@ -16,7 +16,6 @@ def main():
     # clean output directory
     os.system(f'rm -r {output_dir}/*')
 
-
     for flavour in CTP_FLAVOURS:
         os.makedirs(os.path.join(output_dir, flavour), exist_ok=True)
         # for every file in the input directory and its subdirectories
@@ -26,9 +25,18 @@ def main():
                     input_path = os.path.join(root, file)
                     # print("input_path: " + input_path)
                     relative_path = os.path.relpath(input_path, input_dir)
-                    output_path = os.path.join(output_dir, flavour, relative_path)
+                    output_path = os.path.join(
+                        output_dir,
+                        flavour,
+                        relative_path
+                    )
                     # print("output_path: " + output_path)
-                    apply_lutgen([input_path], output_path=output_path, palette=f"catppuccin-{flavour}")
+                    apply_lutgen(
+                        [input_path],
+                        output_path=output_path,
+                        palette=f"catppuccin-{flavour}"
+                    )
+
 
 def apply_lutgen(images, output_path=None, palette=None, level=10):
     command = ['lutgen', 'apply']
@@ -39,11 +47,17 @@ def apply_lutgen(images, output_path=None, palette=None, level=10):
     command.append(f'--level={level}')
     command.extend(images)
     try:
-        result = subprocess.run(command, check=True, text=True, capture_output=True)
+        result = subprocess.run(
+            command,
+            check=True,
+            text=True,
+            capture_output=True
+        )
         print("[lutgen] output: ", result.stdout)
     except subprocess.CalledProcessError as e:
         print("[lutgen] error: ", e.stderr)
         sys.exit(e.returncode)
+
 
 if __name__ == "__main__":
     main()
