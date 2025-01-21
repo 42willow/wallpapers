@@ -33,7 +33,7 @@
     packages = genSystems (system:
       (self.overlays.default null pkgsFor.${system})
       // {
-        default = self.packages.${system}.wallpkgs;
+        default = self.packages.${system}.full;
       });
 
     formatter = genSystems (system: pkgsFor.${system}.alejandra);

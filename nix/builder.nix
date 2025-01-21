@@ -13,11 +13,6 @@
     then "wallpapers"
     else "wallpapers-${flavour}";
 
-  pathsToCopy =
-    if (flavour == null)
-    then "./*"
-    else "./${flavour}";
-
   lutApply = pkgs.writers.writePython3Bin "lut-apply" {} ''
     import os
     import sys
@@ -26,19 +21,10 @@
     CTP_FLAVOURS = ["latte", "frappe", "macchiato", "mocha"]
 
 
-    def main():
-        if len(sys.argv) != 3:
-            print("usage: python lutgen.py <input_dir> <output_dir>")
-            sys.exit(1)
-
-        input_dir = sys.argv[1]
-        output_dir = sys.argv[2]
-
-        # clean output directory
-        os.system(f'rm -r {output_dir}/*')
-
+    def main(input_dir, output_dir, input_flavour=None):
         for flavour in CTP_FLAVOURS:
-            os.makedirs(os.path.join(output_dir, flavour), exist_ok=True)
+            if input_flavour and input_flavour != flavour:
+                continue
             # for every file in the input directory and its subdirectories
             for root, dirs, files in os.walk(input_dir):
                 for file in files:
@@ -84,7 +70,15 @@
 
 
     if __name__ == "__main__":
-        main()
+        if len(sys.argv) < 3 or len(sys.argv) > 4:
+            print("usage: python lutgen.py <input_dir> <output_dir> [flavour]")
+            sys.exit(1)
+
+        input_dir = sys.argv[1]
+        output_dir = sys.argv[2]
+        flavour = sys.argv[3] if len(sys.argv) == 4 else None
+
+        main(input_dir, output_dir, flavour)
   '';
 in
   stdenvNoCC.mkDerivation {
@@ -103,8 +97,7 @@ in
 
     installPhase = ''
       runHook preInstall
-      # TODO)) use "flavour"
-      ${lib.getExe lutApply} $src $out/share/wallpapers
+      ${lib.getExe lutApply} $src $out/share/wallpapers ${flavour}
       runHook postInstall
     '';
 
