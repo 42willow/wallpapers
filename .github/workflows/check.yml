@@ -1,4 +1,4 @@
-name: "nix: eval"
+name: "nix check"
 on:
   pull_request:
   push:
@@ -10,4 +10,4 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      - run: nix eval .#full
+      - run: nix flake check --show-trace
