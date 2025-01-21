@@ -97,7 +97,11 @@ in
 
     installPhase = ''
       runHook preInstall
-      ${lib.getExe lutApply} $src $out/share/wallpapers ${flavour}
+      ${lib.getExe lutApply} $src $out/share/wallpapers ${
+        if flavour != null
+        then flavour
+        else ""
+      }
       runHook postInstall
     '';
 
