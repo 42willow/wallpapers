@@ -13,10 +13,11 @@
     then "wallpapers"
     else "wallpapers-${flavour}";
 
-  lutApply = pkgs.writers.writePython3Bin "lut-apply" {} (pkgs.substituteAll {
-    src = ../scripts/lutgen.py;
-    lutgen = lib.getExe pkgs.lutgen;
-  });
+  lutApply = pkgs.writers.writePython3Bin "lut-apply" {} (
+    pkgs.replaceVars ../scripts/lutgen.py {
+      lutgen = lib.getExe pkgs.lutgen;
+    }
+  );
 in
   stdenvNoCC.mkDerivation {
     inherit pname version;
