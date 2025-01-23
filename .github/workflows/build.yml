@@ -1,7 +1,12 @@
 name: "Build"
+
 on:
   pull_request:
   push:
+    branches: [main]
+    paths: ["wallpapers/**"]
+  workflow_dispatch:
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,8 +15,23 @@ jobs:
       - uses: cachix/install-nix-action@v27
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
       - run: nix build .#full
-      - uses: actions/upload-artifact@v4
+      - run: mkdir -p dist
+      - run: cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
+      - run: chmod -R 666 dist/
+      - run: |
+          for dir in dist/*; do
+            zip -r "${dir%/}.zip" "$dir"
+          done
+
+      - name: upload action artifacts
+        uses: actions/upload-artifact@v4
         with:
           name: wallpapers
-          path: result/share/wallpapers/
+          path: ./dist/*.zip
+
+      - name: upload to release
+        run: gh release upload --clobber wallpapers ./dist/*.zip
+        env:
+          GH_TOKEN: ${{ github.token }}
