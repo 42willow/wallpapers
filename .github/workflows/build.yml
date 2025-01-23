@@ -16,7 +16,7 @@ jobs:
         with:
           github_access_token: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: nix build .#full
+      - run: nix build .#macchiato
       - run: mkdir -p dist
       - run: cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
       - run: chmod -R 666 dist/
