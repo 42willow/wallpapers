@@ -19,7 +19,7 @@ jobs:
       - run: nix build .#macchiato
       - run: mkdir -p dist
       - run: cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
-      - run: chmod -R 666 dist/
+      - run: sudo chmod -R 666 dist/
       - run: |
           for dir in dist/*; do
             zip -r "${dir%/}.zip" "$dir"
