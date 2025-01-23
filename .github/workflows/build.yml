@@ -7,6 +7,9 @@ on:
     paths: ["wallpapers/**"]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,13 +17,14 @@ jobs:
       - uses: actions/checkout@v4
       - uses: cachix/install-nix-action@v27
         with:
-          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          github_access_token: ${{ github.token }}
 
-      - run: nix build .#macchiato
-      - run: mkdir -p dist
-      - run: cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
-      - run: sudo chmod -R 666 dist/
+      - run: nix build .#full
       - run: |
+          mkdir -p dist
+
+          cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
+
           for dir in dist/*; do
             zip -r "${dir%/}.zip" "$dir"
           done
