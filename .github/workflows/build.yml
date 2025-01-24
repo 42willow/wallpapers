@@ -26,7 +26,7 @@ jobs:
           cp -rL --no-preserve=ownership result/share/wallpapers/* dist/
 
           for dir in dist/*; do
-            zip -r "${dir%/}.zip" "$dir"
+            zip -r "dist/wallpapers-$(basename "$dir").zip" "$dir"
           done
 
       - name: upload action artifacts
