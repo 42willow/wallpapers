@@ -45,7 +45,9 @@
   </a>
 </p>
 
------------------
+---
+
+This repo provides a curated collection of wallpapers that are hand-picked for high resolution displays. Each wallpaper has been (or will be!) converted to the four colour schemes of [Catppuccin](https://catppuccin.com). Other colour schemes can be added in future if requested.
 
 ## Usage
 
@@ -55,7 +57,46 @@ See instructions on the [GitHub release page](https://github.com/42willow/wallpa
 
 ### Nix
 
-Instructions coming soon™
+`nix flake show github:42willow/wallpapers`
+
+Package inputs:
+
+- `full` (default)
+- `latte`
+- `frappe`
+- `macchiato`
+- `mocha`
+
+#### With Flakes
+
+`flake.nix`
+```nix
+inputs = {
+  wallpapers = {
+    url = "github:42willow/wallpapers";
+    inputs.nixpkgs.follows = "nixpkgs";
+    # «https://github.com/nix-systems/nix-systems»
+    # inputs.systems.follows = "systems"; # if using nix-systems
+  };
+};
+```
+
+`configuration.nix`
+```nix
+{inputs, pkgs, ...}: {
+  environment = {
+    etc."wallpapers".source = inputs.wallpapers.packages.${pkgs.system}.full;
+  };
+}
+```
+
+#### Without Flakes
+
+```bash
+$ nix profile install github:42willow/wallpapers#full
+```
+
+<sub>Nix instructions adapted from [NotAShelf/wallpkgs](https://github.com/NotAShelf/wallpkgs?tab=readme-ov-file#installing), please read there for more detail.</sub>
 
 ## Previews
 
@@ -70,6 +111,8 @@ A huge thanks to [NotAShelf](https://github.com/NotAShelf) for his [wallpkgs](ht
 I would recommend checking out his projects and maybe even giving them a star!
 
 All images are sourced from the internet and are not my own work. If you are the original artist and would like me to remove your work, please contact me via email at `42willow [at] pm [dot] me`.
+
+### Collections
 
 - [Flick0](https://github.com/flick0/kabegami)
 - [DragonDev07 (for more script features)](https://github.com/DragonDev07/Wallpapers/blob/main/markdown.py)
