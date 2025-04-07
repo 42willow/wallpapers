@@ -22,7 +22,7 @@ jobs:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock', 'scripts/**/*') }}
           restore-prefixes-first-match: nix-${{ runner.os }}-
 
-      - if: ${{ nix-cache.hit-primary-key == 'false' }}
+      - if: ${{ steps.nix-cache.outputs.hit-primary-key == 'false' }}
         id: nix-build
         name: "build wallpapers"
         run: nix build .#full
@@ -36,7 +36,7 @@ jobs:
 
       - name: "use cached wallpapers"
         id: use-cache
-        if: ${{ nix-cache.hit-primary-key == 'true' }}
+        if: ${{ steps.nix-cache.outputs.hit-primary-key == 'true' }}
         run: |
           ln -s $(find /nix/store/ -type d -name '*-wallpapers-*' | head -n 1) result
 
