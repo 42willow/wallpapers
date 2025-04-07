@@ -1,6 +1,7 @@
 import os
 import sys
 import subprocess
+import shutil
 
 CTP_FLAVOURS = ["latte", "frappe", "macchiato", "mocha"]
 
@@ -25,8 +26,11 @@ def main(input_dir, output_dir, input_flavour=None):
                     apply_lutgen(
                         [input_path],
                         output_path=output_path,
-                        palette=f"catppuccin-{flavour}"
+                        palette=f"catppuccin-{flavour}",
+                        level=16
                     )
+    if input_flavour == "unthemed" or input_flavour is None:
+        shutil.copytree(input_dir, os.path.join(output_dir, "unthemed"))
 
 
 def apply_lutgen(images, output_path=None, palette=None, level=10):

@@ -1,461 +1,109 @@
-> [!IMPORTANT]
-> I am currently restructuring this repository to store the generated images in GitHub actions rather than LFS as I am running into bandwidth issues. In the meantime you can download the wallpapers from https://github.com/42willow/walls-bak.
+<h3 align="center">
+  <img src="https://github.com/42willow/flake/blob/main/docs/assets/flake.png?raw=true" width="100" alt="Nix Logo" /><br />
+  <img src="https://github.com/42willow/flake/blob/main/docs/assets/transparent.png?raw=true" height="30" width="0px" alt="" />
+  willow's wallpaper dump
+  <img src="https://github.com/42willow/flake/blob/main/docs/assets/transparent.png?raw=true" height="30" width="0px" alt="" />
+</h3>
 
-<!-- HEADERS -->
+<h6 align="center">
+  <a href="#usage">Usage</a>
+  ·
+  <a href="#previews">Previews</a>
+  ·
+  <a href="#credits">Credits</a>
+</h6>
+
 <p align="center">
-  <img width="25%" src="https://github.com/42willow.png" />
+  <img
+    src="https://github.com/42willow/flake/blob/main/docs/assets/macchiato.png?raw=true"
+    width="400"
+    alt="Catppuccin Macchiato Palette"
+  />
 </p>
+
 <p align="center">
-  <b> ~ willow's wallpaper dump ~ </b>
+  <a href="https://github.com/42willow/wallpapers/stargazers">
+    <img
+      alt="Stargazers"
+      src="https://img.shields.io/github/stars/42willow/wallpapers?style=for-the-badge&logo=starship&color=7dc4e4&logoColor=white&labelColor=363a4f"
+  /></a>
+  <a href="https://github.com/42willow/wallpapers">
+    <img
+      alt="Repo Size"
+      src="https://img.shields.io/github/repo-size/42willow/wallpapers.svg?style=for-the-badge&logo=github&color=a6da95&logoColor=white&labelColor=363a4f"
+  /></a>
+  <a href="https://github.com/42willow/wallpapers/issues">
+    <img
+      alt="Issues"
+      src="https://img.shields.io/github/issues/42willow/wallpapers?style=for-the-badge&logo=gitbook&color=f5a97f&logoColor=white&labelColor=363a4f"
+  /></a>
+  <a href="https://github.com/42willow/wallpapers/tree/main/LICENSE">
+    <img
+      alt="GitHub License"
+      src="https://img.shields.io/github/license/42willow/wallpapers?style=for-the-badge&logo=data%3Aimage%2Fsvg%2Bxml%3Bbase64%2CPHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjIiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgY2xhc3M9Imx1Y2lkZSBsdWNpZGUtc2NhbGUiPjxwYXRoIGQ9Im0xNiAxNiAzLTggMyA4Yy0uODcuNjUtMS45MiAxLTMgMXMtMi4xMy0uMzUtMy0xWiIvPjxwYXRoIGQ9Im0yIDE2IDMtOCAzIDhjLS44Ny42NS0xLjkyIDEtMyAxcy0yLjEzLS4zNS0zLTFaIi8%2BPHBhdGggZD0iTTcgMjFoMTAiLz48cGF0aCBkPSJNMTIgM3YxOCIvPjxwYXRoIGQ9Ik0zIDdoMmMyIDAgNS0xIDctMiAyIDEgNSAyIDcgMmgyIi8%2BPC9zdmc%2B&logoColor=%23cad3f5&labelColor=%23363a4f&color=%23c6a0f6"
+    />
+  </a>
 </p>
 
-All wallpapers here are suitable for a 4K monitor :)
+---
 
-Inspired by [flick0](https://github.com/flickowoa/kabegami)
+This repo provides a curated collection of wallpapers that are hand-picked for high resolution displays. Each wallpaper has been (or will be!) converted to the four colour schemes of [Catppuccin](https://catppuccin.com). Other colour schemes can be added in future if requested.
 
------------------
-## Frappe
+## Usage
 
-<details><summary>Frappe</summary>
+### Download
 
-**Tags:** `Kurzgesagt` `Asteroid_Miner_1`
+See instructions on the [GitHub release page](https://github.com/42willow/wallpapers/releases/tag/wallpapers).
 
-<img src='dist/Frappe/Kurzgesagt-Asteroid_Miner_1.png' title='Kurzgesagt-Asteroid_Miner_1'>
+### Nix
 
-**Tags:** `Kurzgesagt` `Asteroid_Miner_2`
+`nix flake show github:42willow/wallpapers`
 
-<img src='dist/Frappe/Kurzgesagt-Asteroid_Miner_2.png' title='Kurzgesagt-Asteroid_Miner_2'>
+Package inputs:
 
-**Tags:** `Kurzgesagt` `Asteroids`
+- `full` (default)
+- `latte`
+- `frappe`
+- `macchiato`
+- `mocha`
 
-<img src='dist/Frappe/Kurzgesagt-Asteroids.png' title='Kurzgesagt-Asteroids'>
+#### With Flakes
 
-**Tags:** `Kurzgesagt` `Baby_Star`
+`flake.nix`
+```nix
+inputs = {
+  wallpapers = {
+    url = "github:42willow/wallpapers";
+    inputs.nixpkgs.follows = "nixpkgs";
+    # «https://github.com/nix-systems/nix-systems»
+    # inputs.systems.follows = "systems"; # if using nix-systems
+  };
+};
+```
 
-<img src='dist/Frappe/Kurzgesagt-Baby_Star.png' title='Kurzgesagt-Baby_Star'>
+`configuration.nix`
+```nix
+{inputs, pkgs, ...}: {
+  environment = {
+    etc."wallpapers".source = inputs.wallpapers.packages.${pkgs.system}.full;
+  };
+}
+```
 
-**Tags:** `Kurzgesagt` `Black_Hole_1`
+#### Without Flakes
 
-<img src='dist/Frappe/Kurzgesagt-Black_Hole_1.png' title='Kurzgesagt-Black_Hole_1'>
+```bash
+$ nix profile install github:42willow/wallpapers#full
+```
 
-**Tags:** `Kurzgesagt` `Black_Hole_2`
+<sub>Nix instructions adapted from [NotAShelf/wallpkgs](https://github.com/NotAShelf/wallpkgs?tab=readme-ov-file#installing), please read there for more detail.</sub>
 
-<img src='dist/Frappe/Kurzgesagt-Black_Hole_2.png' title='Kurzgesagt-Black_Hole_2'>
+## Previews
 
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_1`
-
-<img src='dist/Frappe/Kurzgesagt-Cloudy_Quasar_1.png' title='Kurzgesagt-Cloudy_Quasar_1'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_2`
-
-<img src='dist/Frappe/Kurzgesagt-Cloudy_Quasar_2.png' title='Kurzgesagt-Cloudy_Quasar_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_1`
-
-<img src='dist/Frappe/Kurzgesagt-Contemplative_Cosmonaut_1.png' title='Kurzgesagt-Contemplative_Cosmonaut_1'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_2`
-
-<img src='dist/Frappe/Kurzgesagt-Contemplative_Cosmonaut_2.png' title='Kurzgesagt-Contemplative_Cosmonaut_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_3`
-
-<img src='dist/Frappe/Kurzgesagt-Contemplative_Cosmonaut_3.png' title='Kurzgesagt-Contemplative_Cosmonaut_3'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_4`
-
-<img src='dist/Frappe/Kurzgesagt-Contemplative_Cosmonaut_4.png' title='Kurzgesagt-Contemplative_Cosmonaut_4'>
-
-**Tags:** `Kurzgesagt` `Cosmic_Islands`
-
-<img src='dist/Frappe/Kurzgesagt-Cosmic_Islands.png' title='Kurzgesagt-Cosmic_Islands'>
-
-**Tags:** `Kurzgesagt` `Fleet`
-
-<img src='dist/Frappe/Kurzgesagt-Fleet.png' title='Kurzgesagt-Fleet'>
-
-**Tags:** `Kurzgesagt` `Galaxies`
-
-<img src='dist/Frappe/Kurzgesagt-Galaxies.png' title='Kurzgesagt-Galaxies'>
-
-**Tags:** `Kurzgesagt` `Galaxy_1`
-
-<img src='dist/Frappe/Kurzgesagt-Galaxy_1.png' title='Kurzgesagt-Galaxy_1'>
-
-**Tags:** `Kurzgesagt` `Galaxy_2`
-
-<img src='dist/Frappe/Kurzgesagt-Galaxy_2.png' title='Kurzgesagt-Galaxy_2'>
-
-**Tags:** `Kurzgesagt` `Galaxy_3`
-
-<img src='dist/Frappe/Kurzgesagt-Galaxy_3.png' title='Kurzgesagt-Galaxy_3'>
-
-**Tags:** `Kurzgesagt` `Mars`
-
-<img src='dist/Frappe/Kurzgesagt-Mars.png' title='Kurzgesagt-Mars'>
-
-**Tags:** `Kurzgesagt` `On_A_Moon`
-
-<img src='dist/Frappe/Kurzgesagt-On_A_Moon.png' title='Kurzgesagt-On_A_Moon'>
-
-**Tags:** `Kurzgesagt` `Ringed_Earth`
-
-<img src='dist/Frappe/Kurzgesagt-Ringed_Earth.png' title='Kurzgesagt-Ringed_Earth'>
-
-**Tags:** `Kurzgesagt` `Satellite_over_Earth`
-
-<img src='dist/Frappe/Kurzgesagt-Satellite_over_Earth.png' title='Kurzgesagt-Satellite_over_Earth'>
-
-**Tags:** `Kurzgesagt` `Solar_System`
-
-<img src='dist/Frappe/Kurzgesagt-Solar_System.png' title='Kurzgesagt-Solar_System'>
-
-**Tags:** `Kurzgesagt` `Stars`
-
-<img src='dist/Frappe/Kurzgesagt-Stars.png' title='Kurzgesagt-Stars'>
-
-**Tags:** `Kurzgesagt` `Stellar_Phenomenon`
-
-<img src='dist/Frappe/Kurzgesagt-Stellar_Phenomenon.png' title='Kurzgesagt-Stellar_Phenomenon'>
-
-**Tags:** `Kurzgesagt` `Unknown_Lifeform`
-
-<img src='dist/Frappe/Kurzgesagt-Unknown_Lifeform.png' title='Kurzgesagt-Unknown_Lifeform'>
-
-</details>
-
-## Latte
-
-<details><summary>Latte</summary>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_1`
-
-<img src='dist/Latte/Kurzgesagt-Asteroid_Miner_1.png' title='Kurzgesagt-Asteroid_Miner_1'>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_2`
-
-<img src='dist/Latte/Kurzgesagt-Asteroid_Miner_2.png' title='Kurzgesagt-Asteroid_Miner_2'>
-
-**Tags:** `Kurzgesagt` `Asteroids`
-
-<img src='dist/Latte/Kurzgesagt-Asteroids.png' title='Kurzgesagt-Asteroids'>
-
-**Tags:** `Kurzgesagt` `Baby_Star`
-
-<img src='dist/Latte/Kurzgesagt-Baby_Star.png' title='Kurzgesagt-Baby_Star'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_1`
-
-<img src='dist/Latte/Kurzgesagt-Black_Hole_1.png' title='Kurzgesagt-Black_Hole_1'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_2`
-
-<img src='dist/Latte/Kurzgesagt-Black_Hole_2.png' title='Kurzgesagt-Black_Hole_2'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_1`
-
-<img src='dist/Latte/Kurzgesagt-Cloudy_Quasar_1.png' title='Kurzgesagt-Cloudy_Quasar_1'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_2`
-
-<img src='dist/Latte/Kurzgesagt-Cloudy_Quasar_2.png' title='Kurzgesagt-Cloudy_Quasar_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_1`
-
-<img src='dist/Latte/Kurzgesagt-Contemplative_Cosmonaut_1.png' title='Kurzgesagt-Contemplative_Cosmonaut_1'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_2`
-
-<img src='dist/Latte/Kurzgesagt-Contemplative_Cosmonaut_2.png' title='Kurzgesagt-Contemplative_Cosmonaut_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_3`
-
-<img src='dist/Latte/Kurzgesagt-Contemplative_Cosmonaut_3.png' title='Kurzgesagt-Contemplative_Cosmonaut_3'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_4`
-
-<img src='dist/Latte/Kurzgesagt-Contemplative_Cosmonaut_4.png' title='Kurzgesagt-Contemplative_Cosmonaut_4'>
-
-**Tags:** `Kurzgesagt` `Cosmic_Islands`
-
-<img src='dist/Latte/Kurzgesagt-Cosmic_Islands.png' title='Kurzgesagt-Cosmic_Islands'>
-
-**Tags:** `Kurzgesagt` `Fleet`
-
-<img src='dist/Latte/Kurzgesagt-Fleet.png' title='Kurzgesagt-Fleet'>
-
-**Tags:** `Kurzgesagt` `Galaxies`
-
-<img src='dist/Latte/Kurzgesagt-Galaxies.png' title='Kurzgesagt-Galaxies'>
-
-**Tags:** `Kurzgesagt` `Galaxy_1`
-
-<img src='dist/Latte/Kurzgesagt-Galaxy_1.png' title='Kurzgesagt-Galaxy_1'>
-
-**Tags:** `Kurzgesagt` `Galaxy_2`
-
-<img src='dist/Latte/Kurzgesagt-Galaxy_2.png' title='Kurzgesagt-Galaxy_2'>
-
-**Tags:** `Kurzgesagt` `Galaxy_3`
-
-<img src='dist/Latte/Kurzgesagt-Galaxy_3.png' title='Kurzgesagt-Galaxy_3'>
-
-**Tags:** `Kurzgesagt` `Mars`
-
-<img src='dist/Latte/Kurzgesagt-Mars.png' title='Kurzgesagt-Mars'>
-
-**Tags:** `Kurzgesagt` `On_A_Moon`
-
-<img src='dist/Latte/Kurzgesagt-On_A_Moon.png' title='Kurzgesagt-On_A_Moon'>
-
-**Tags:** `Kurzgesagt` `Ringed_Earth`
-
-<img src='dist/Latte/Kurzgesagt-Ringed_Earth.png' title='Kurzgesagt-Ringed_Earth'>
-
-**Tags:** `Kurzgesagt` `Satellite_over_Earth`
-
-<img src='dist/Latte/Kurzgesagt-Satellite_over_Earth.png' title='Kurzgesagt-Satellite_over_Earth'>
-
-**Tags:** `Kurzgesagt` `Solar_System`
-
-<img src='dist/Latte/Kurzgesagt-Solar_System.png' title='Kurzgesagt-Solar_System'>
-
-**Tags:** `Kurzgesagt` `Stars`
-
-<img src='dist/Latte/Kurzgesagt-Stars.png' title='Kurzgesagt-Stars'>
-
-**Tags:** `Kurzgesagt` `Stellar_Phenomenon`
-
-<img src='dist/Latte/Kurzgesagt-Stellar_Phenomenon.png' title='Kurzgesagt-Stellar_Phenomenon'>
-
-**Tags:** `Kurzgesagt` `Unknown_Lifeform`
-
-<img src='dist/Latte/Kurzgesagt-Unknown_Lifeform.png' title='Kurzgesagt-Unknown_Lifeform'>
-
-</details>
-
-## Macchiato
-
-<details><summary>Macchiato</summary>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_1`
-
-<img src='dist/Macchiato/Kurzgesagt-Asteroid_Miner_1.png' title='Kurzgesagt-Asteroid_Miner_1'>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_2`
-
-<img src='dist/Macchiato/Kurzgesagt-Asteroid_Miner_2.png' title='Kurzgesagt-Asteroid_Miner_2'>
-
-**Tags:** `Kurzgesagt` `Asteroids`
-
-<img src='dist/Macchiato/Kurzgesagt-Asteroids.png' title='Kurzgesagt-Asteroids'>
-
-**Tags:** `Kurzgesagt` `Baby_Star`
-
-<img src='dist/Macchiato/Kurzgesagt-Baby_Star.png' title='Kurzgesagt-Baby_Star'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_1`
-
-<img src='dist/Macchiato/Kurzgesagt-Black_Hole_1.png' title='Kurzgesagt-Black_Hole_1'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_2`
-
-<img src='dist/Macchiato/Kurzgesagt-Black_Hole_2.png' title='Kurzgesagt-Black_Hole_2'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_1`
-
-<img src='dist/Macchiato/Kurzgesagt-Cloudy_Quasar_1.png' title='Kurzgesagt-Cloudy_Quasar_1'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_2`
-
-<img src='dist/Macchiato/Kurzgesagt-Cloudy_Quasar_2.png' title='Kurzgesagt-Cloudy_Quasar_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_1`
-
-<img src='dist/Macchiato/Kurzgesagt-Contemplative_Cosmonaut_1.png' title='Kurzgesagt-Contemplative_Cosmonaut_1'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_2`
-
-<img src='dist/Macchiato/Kurzgesagt-Contemplative_Cosmonaut_2.png' title='Kurzgesagt-Contemplative_Cosmonaut_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_3`
-
-<img src='dist/Macchiato/Kurzgesagt-Contemplative_Cosmonaut_3.png' title='Kurzgesagt-Contemplative_Cosmonaut_3'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_4`
-
-<img src='dist/Macchiato/Kurzgesagt-Contemplative_Cosmonaut_4.png' title='Kurzgesagt-Contemplative_Cosmonaut_4'>
-
-**Tags:** `Kurzgesagt` `Cosmic_Islands`
-
-<img src='dist/Macchiato/Kurzgesagt-Cosmic_Islands.png' title='Kurzgesagt-Cosmic_Islands'>
-
-**Tags:** `Kurzgesagt` `Fleet`
-
-<img src='dist/Macchiato/Kurzgesagt-Fleet.png' title='Kurzgesagt-Fleet'>
-
-**Tags:** `Kurzgesagt` `Galaxies`
-
-<img src='dist/Macchiato/Kurzgesagt-Galaxies.png' title='Kurzgesagt-Galaxies'>
-
-**Tags:** `Kurzgesagt` `Galaxy_1`
-
-<img src='dist/Macchiato/Kurzgesagt-Galaxy_1.png' title='Kurzgesagt-Galaxy_1'>
-
-**Tags:** `Kurzgesagt` `Galaxy_2`
-
-<img src='dist/Macchiato/Kurzgesagt-Galaxy_2.png' title='Kurzgesagt-Galaxy_2'>
-
-**Tags:** `Kurzgesagt` `Galaxy_3`
-
-<img src='dist/Macchiato/Kurzgesagt-Galaxy_3.png' title='Kurzgesagt-Galaxy_3'>
-
-**Tags:** `Kurzgesagt` `Mars`
-
-<img src='dist/Macchiato/Kurzgesagt-Mars.png' title='Kurzgesagt-Mars'>
-
-**Tags:** `Kurzgesagt` `On_A_Moon`
-
-<img src='dist/Macchiato/Kurzgesagt-On_A_Moon.png' title='Kurzgesagt-On_A_Moon'>
-
-**Tags:** `Kurzgesagt` `Ringed_Earth.jpg`
-
-<img src='dist/Macchiato/Kurzgesagt-Ringed_Earth.jpg.jpg' title='Kurzgesagt-Ringed_Earth.jpg'>
-
-**Tags:** `Kurzgesagt` `Satellite_over_Earth`
-
-<img src='dist/Macchiato/Kurzgesagt-Satellite_over_Earth.png' title='Kurzgesagt-Satellite_over_Earth'>
-
-**Tags:** `Kurzgesagt` `Solar_System`
-
-<img src='dist/Macchiato/Kurzgesagt-Solar_System.png' title='Kurzgesagt-Solar_System'>
-
-**Tags:** `Kurzgesagt` `Stars`
-
-<img src='dist/Macchiato/Kurzgesagt-Stars.png' title='Kurzgesagt-Stars'>
-
-**Tags:** `Kurzgesagt` `Stellar_Phenomenon`
-
-<img src='dist/Macchiato/Kurzgesagt-Stellar_Phenomenon.png' title='Kurzgesagt-Stellar_Phenomenon'>
-
-**Tags:** `Kurzgesagt` `Unknown_Lifeform`
-
-<img src='dist/Macchiato/Kurzgesagt-Unknown_Lifeform.png' title='Kurzgesagt-Unknown_Lifeform'>
-
-</details>
-
-## Mocha
-
-<details><summary>Mocha</summary>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_1`
-
-<img src='dist/Mocha/Kurzgesagt-Asteroid_Miner_1.png' title='Kurzgesagt-Asteroid_Miner_1'>
-
-**Tags:** `Kurzgesagt` `Asteroid_Miner_2`
-
-<img src='dist/Mocha/Kurzgesagt-Asteroid_Miner_2.png' title='Kurzgesagt-Asteroid_Miner_2'>
-
-**Tags:** `Kurzgesagt` `Asteroids`
-
-<img src='dist/Mocha/Kurzgesagt-Asteroids.png' title='Kurzgesagt-Asteroids'>
-
-**Tags:** `Kurzgesagt` `Baby_Star`
-
-<img src='dist/Mocha/Kurzgesagt-Baby_Star.png' title='Kurzgesagt-Baby_Star'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_1`
-
-<img src='dist/Mocha/Kurzgesagt-Black_Hole_1.png' title='Kurzgesagt-Black_Hole_1'>
-
-**Tags:** `Kurzgesagt` `Black_Hole_2`
-
-<img src='dist/Mocha/Kurzgesagt-Black_Hole_2.png' title='Kurzgesagt-Black_Hole_2'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_1`
-
-<img src='dist/Mocha/Kurzgesagt-Cloudy_Quasar_1.png' title='Kurzgesagt-Cloudy_Quasar_1'>
-
-**Tags:** `Kurzgesagt` `Cloudy_Quasar_2`
-
-<img src='dist/Mocha/Kurzgesagt-Cloudy_Quasar_2.png' title='Kurzgesagt-Cloudy_Quasar_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_1`
-
-<img src='dist/Mocha/Kurzgesagt-Contemplative_Cosmonaut_1.png' title='Kurzgesagt-Contemplative_Cosmonaut_1'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_2`
-
-<img src='dist/Mocha/Kurzgesagt-Contemplative_Cosmonaut_2.png' title='Kurzgesagt-Contemplative_Cosmonaut_2'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_3`
-
-<img src='dist/Mocha/Kurzgesagt-Contemplative_Cosmonaut_3.png' title='Kurzgesagt-Contemplative_Cosmonaut_3'>
-
-**Tags:** `Kurzgesagt` `Contemplative_Cosmonaut_4`
-
-<img src='dist/Mocha/Kurzgesagt-Contemplative_Cosmonaut_4.png' title='Kurzgesagt-Contemplative_Cosmonaut_4'>
-
-**Tags:** `Kurzgesagt` `Cosmic_Islands`
-
-<img src='dist/Mocha/Kurzgesagt-Cosmic_Islands.png' title='Kurzgesagt-Cosmic_Islands'>
-
-**Tags:** `Kurzgesagt` `Fleet`
-
-<img src='dist/Mocha/Kurzgesagt-Fleet.png' title='Kurzgesagt-Fleet'>
-
-**Tags:** `Kurzgesagt` `Galaxies`
-
-<img src='dist/Mocha/Kurzgesagt-Galaxies.png' title='Kurzgesagt-Galaxies'>
-
-**Tags:** `Kurzgesagt` `Galaxy_1`
-
-<img src='dist/Mocha/Kurzgesagt-Galaxy_1.png' title='Kurzgesagt-Galaxy_1'>
-
-**Tags:** `Kurzgesagt` `Galaxy_2`
-
-<img src='dist/Mocha/Kurzgesagt-Galaxy_2.png' title='Kurzgesagt-Galaxy_2'>
-
-**Tags:** `Kurzgesagt` `Galaxy_3`
-
-<img src='dist/Mocha/Kurzgesagt-Galaxy_3.png' title='Kurzgesagt-Galaxy_3'>
-
-**Tags:** `Kurzgesagt` `Mars`
-
-<img src='dist/Mocha/Kurzgesagt-Mars.png' title='Kurzgesagt-Mars'>
-
-**Tags:** `Kurzgesagt` `On_A_Moon`
-
-<img src='dist/Mocha/Kurzgesagt-On_A_Moon.png' title='Kurzgesagt-On_A_Moon'>
-
-**Tags:** `Kurzgesagt` `Ringed_Earth.jpg`
-
-<img src='dist/Mocha/Kurzgesagt-Ringed_Earth.jpg.jpg' title='Kurzgesagt-Ringed_Earth.jpg'>
-
-**Tags:** `Kurzgesagt` `Satellite_over_Earth`
-
-<img src='dist/Mocha/Kurzgesagt-Satellite_over_Earth.png' title='Kurzgesagt-Satellite_over_Earth'>
-
-**Tags:** `Kurzgesagt` `Solar_System`
-
-<img src='dist/Mocha/Kurzgesagt-Solar_System.png' title='Kurzgesagt-Solar_System'>
-
-**Tags:** `Kurzgesagt` `Stars`
-
-<img src='dist/Mocha/Kurzgesagt-Stars.png' title='Kurzgesagt-Stars'>
-
-**Tags:** `Kurzgesagt` `Stellar_Phenomenon`
-
-<img src='dist/Mocha/Kurzgesagt-Stellar_Phenomenon.png' title='Kurzgesagt-Stellar_Phenomenon'>
-
-**Tags:** `Kurzgesagt` `Unknown_Lifeform`
-
-<img src='dist/Mocha/Kurzgesagt-Unknown_Lifeform.png' title='Kurzgesagt-Unknown_Lifeform'>
-
-</details>
-
-
------------------
+> [!NOTE]
+> Website coming soon™
+>
+> In the meantime you can preview the wallpapers at https://github.com/42willow/walls-bak.
 
 ## Credits
 
@@ -464,13 +112,15 @@ I would recommend checking out his projects and maybe even giving them a star!
 
 All images are sourced from the internet and are not my own work. If you are the original artist and would like me to remove your work, please contact me via email at `42willow [at] pm [dot] me`.
 
+### Collections
+
 - [Flick0](https://github.com/flick0/kabegami)
 - [DragonDev07 (for more script features)](https://github.com/DragonDev07/Wallpapers/blob/main/markdown.py)
 - [Biohazardia](https://www.deviantart.com/biohazardia/gallery)
 - [Imgur Pixel Art Dump](https://imgur.com/gallery/SELjK)
 - [Kurzgesagt - AI upscaled](https://www.reddit.com/r/kurzgesagt/comments/15pvf7h/kurzgesagt_4k_wallpapers_3840x2160/)
 
-## Tools
+### Tools
 
 - [tineye](https://www.tineye.com/) - Reverse image search
 - [faerber](https://github.com/nekowinston/faerber) - CLI tool to match images to colour schemes

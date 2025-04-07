@@ -23,7 +23,8 @@
           inherit flavour version;
         };
     in {
-      full = genFlavour null;
+      full = genFlavour null; # includes all flavours and unthemed
+      unthemed = genFlavour "unthemed";
       latte = genFlavour "latte";
       frappe = genFlavour "frappe";
       macchiato = genFlavour "macchiato";
