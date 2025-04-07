@@ -6,16 +6,34 @@ interface Props {
   images: Record<string, () => Promise<{ default: ImageMetadata }>>;
   imagePath: string;
   name: string;
-  author: string;
+  flavour: string;
+  author?: string;
 }
 
-const { images, imagePath, name, author } = Astro.props;
+const { images, imagePath, name, flavour, author } = Astro.props;
 if (!images[imagePath])
   throw new Error(`"${imagePath}" does not exist in glob`);
 ---
 
-<div class="card">
+<div class="card" class:list={flavour}>
   <h2>{name}</h2>
-  <p>Author: {author}</p>
-  <Image src={images[imagePath]()} alt={`${name} by ${author}`} width={400} />
+  {
+    author && (
+      <p>
+        <strong>author:</strong> {author}
+      </p>
+    )
+  }
+  <Image
+    src={images[imagePath]()}
+    alt={author ? `${name} by ${author}` : name}
+    width={400}
+    class="wallpaper"
+  />
 </div>
+
+<style>
+  .wallpaper {
+    border-radius: var(--br);
+  }
+</style>

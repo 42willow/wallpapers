@@ -1,8 +1,20 @@
 ---
+import Navbar from "../components/Navbar.astro";
+import Greeting from "../components/Greeting.astro";
 import Gallery from "../components/Gallery.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <Gallery />
+  <Navbar />
+  <main>
+    <Greeting />
+    <Gallery />
+  </main>
 </Layout>
+
+<style>
+  main {
+    margin: 30px;
+  }
+</style>

@@ -9,20 +9,24 @@ const images = import.meta.glob<{ default: ImageMetadata }>(
 let re =
   /^\/src\/assets\/wallpapers\/(?<flavour>\w+)\/(?<type>\w+)\/(?:(?<category>\w+)\/)?(?:(?<author>\w+)\/)?(?<name>\w+)\..*$/;
 
-const walls = Object.keys(images).map((item) => {
-  // console.log(`item: ${item}`);
-  const match = item.match(re);
-  // console.log(match);
-  if (!match) return null; // TODO)) throw an error message
-  return {
-    path: item,
-    flavour: match.groups?.flavour,
-    type: match.groups?.type,
-    category: match.groups?.category,
-    author: match.groups?.author,
-    name: match.groups?.name,
-  };
-});
+const walls = Object.keys(images)
+  .map((item) => {
+    // console.log(`item: ${item}`);
+    const match = item.match(re);
+    // console.log(match);
+    if (!match) {
+      throw new Error(`failed to parse image path: ${item}`);
+    }
+    return {
+      path: item,
+      flavour: match.groups?.flavour,
+      type: match.groups?.type,
+      category: match.groups?.category,
+      author: match.groups?.author,
+      name: match.groups?.name,
+    };
+  })
+  .filter((item) => item !== null);
 ---
 
 <div id="container">
@@ -33,20 +37,12 @@ const walls = Object.keys(images).map((item) => {
           <Card
             images={images}
             imagePath={item.path}
-            name={item.name}
+            name={item.name as string}
+            flavour={item.flavour as string}
             author={item.author}
           />
         ))
       }
     </section>
-
-    <Card
-      images={images}
-      imagePath="/src/assets/wallpapers/mocha/images/art/willow_and_sundew.jpg"
-      name="Unthemed"
-      author="willow"
-    />
   </main>
-
-  <style></style>
 </div>
