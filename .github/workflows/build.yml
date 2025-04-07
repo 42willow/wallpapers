@@ -17,12 +17,43 @@ jobs:
       - uses: actions/checkout@v4
       - uses: nixbuild/nix-quick-install-action@v30
       - uses: nix-community/cache-nix-action@v6
+        id: nix-cache
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock', 'scripts/**/*') }}
           restore-prefixes-first-match: nix-${{ runner.os }}-
 
-      - name: "build wallpapers"
+      - if: ${{ nix-cache.hit-primary-key == 'false' }}
+        id: nix-build
+        name: "build wallpapers"
         run: nix build .#full
+
+      - name: "upload build artifacts"
+        if: ${{ steps.nix-build.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: nix-result
+          path: ./result/
+
+      - name: "use cached wallpapers"
+        id: use-cache
+        if: ${{ nix-cache.hit-primary-key == 'true' }}
+        run: |
+          ln -s $(find /nix/store/ -type d -name '*-wallpapers-*' | head -n 1) result
+
+      - name: "upload cache artifacts"
+        if: ${{ steps.use-cache.outcome == 'success' }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: nix-result
+          path: ./result/
+
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "download artifacts"
+        uses: actions/download-artifact@v4
+        with:
+          name: nix-result
 
       - name: "zip wallpapers"
         run: |
