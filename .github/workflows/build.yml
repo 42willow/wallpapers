@@ -32,20 +32,21 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: nix-result
-          path: ./result/
+          path: result
 
       - name: "use cached wallpapers"
         id: use-cache
         if: ${{ steps.nix-cache.outputs.hit-primary-key == 'true' }}
         run: |
           ln -s $(find /nix/store/ -type d -name '*-wallpapers-*' | head -n 1) result
+          ls -R result
 
       - name: "upload cache artifacts"
         if: ${{ steps.use-cache.outcome == 'success' }}
         uses: actions/upload-artifact@v4
         with:
           name: nix-result
-          path: ./result/
+          path: result
 
   upload:
     needs: build
@@ -55,6 +56,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nix-result
+          path: result
 
       - name: "zip wallpapers"
         run: |
@@ -86,10 +88,11 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: nix-result
+          path: result
       - name: install, build, and upload site
         uses: withastro/action@v3
         with:
-          path: ./site/
+          path: site
 
   deploy-site:
     name: "deploy site"
