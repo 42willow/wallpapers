@@ -45,7 +45,6 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
 
-      - uses: actions/checkout@v4
       - name: install, build, and upload site
         uses: withastro/action@v3
         with:
