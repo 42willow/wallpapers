@@ -1,0 +1,48 @@
+---
+import Card from "./Card.astro";
+import type { ImageMetadata } from "astro";
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+  "/src/assets/**/*.{jpeg,jpg,png,gif}",
+);
+
+let re =
+  /^\/src\/assets\/wallpapers\/(?<flavour>\w+)\/(?<type>\w+)\/(?:(?<category>\w+)\/)?(?:(?<author>\w+)\/)?(?<name>\w+)\..*$/;
+
+const walls = Object.keys(images)
+  .map((item) => {
+    // console.log(`item: ${item}`);
+    const match = item.match(re);
+    // console.log(match);
+    if (!match) {
+      throw new Error(`failed to parse image path: ${item}`);
+    }
+    return {
+      path: item,
+      flavour: match.groups?.flavour,
+      type: match.groups?.type,
+      category: match.groups?.category,
+      author: match.groups?.author,
+      name: match.groups?.name,
+    };
+  })
+  .filter((item) => item !== null);
+---
+
+<div id="container">
+  <main>
+    <section id="gallery">
+      {
+        walls.map((item) => (
+          <Card
+            images={images}
+            imagePath={item.path}
+            name={item.name as string}
+            flavour={item.flavour as string}
+            author={item.author}
+          />
+        ))
+      }
+    </section>
+  </main>
+</div>
