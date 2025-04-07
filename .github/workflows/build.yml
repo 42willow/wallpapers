@@ -12,6 +12,7 @@ permissions:
 
 jobs:
   build:
+    name: "build wallpapers"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -49,6 +50,7 @@ jobs:
           path: result
 
   upload:
+    name: "upload wallpapers"
     needs: build
     runs-on: ubuntu-latest
     steps:
@@ -69,12 +71,6 @@ jobs:
           for dir in dist/*; do
             zip -r "dist/wallpapers-$(basename "$dir").zip" "$dir"
           done
-
-      - name: "upload action artifacts"
-        uses: actions/upload-artifact@v4
-        with:
-          name: wallpapers
-          path: ./dist/*.zip
 
       - name: "upload to release"
         run: gh release upload --clobber wallpapers ./dist/*.zip
