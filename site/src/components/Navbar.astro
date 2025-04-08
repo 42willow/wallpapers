@@ -1,27 +1,29 @@
-<nav class="center">
+<nav
+  class="bg-ctp-mantle fixed justify-between w-full h-(--navbar-height) flex items-center top-0"
+>
   <section>
-    <div class="center">
+    <div class="flex items-center">
       <img
-        class="logo"
+        class="mx-4"
         width="60px"
         src="/wallpapers/favicon.svg"
         alt="a rainbow nix flake"
       />
-      <h1>willow's wallpaper dump</h1>
+      <h1 class="font-pacifico text-2xl pb-[5px]">willow's wallpaper dump</h1>
     </div>
   </section>
 
-  <section class="center">
-    <div class="flavour-selector">
-      <button class="latte">latte</button>
-      <button class="frappe">frappe</button>
-      <button class="macchiato">macchiato</button>
-      <button class="mocha">mocha</button>
-      <button class="unthemed">unthemed</button>
+  <section class="flex items-center m-2">
+    <div id="flavour-selector" class="mx-2">
+      <button class="btn" id="latte">latte</button>
+      <button class="btn" id="frappe">frappe</button>
+      <button class="btn active" id="macchiato">macchiato</button>
+      <button class="btn" id="mocha">mocha</button>
+      <button class="btn" id="unthemed">unthemed</button>
     </div>
     <a href="https://github.com/42willow/wallpapers" target="_blank">
       <svg
-        class="github-icon"
+        class="mx-2 w-8 fill-ctp-overlay2 hover:fill-ctp-overlay1 transition-colors duration-300"
         role="img"
         viewBox="0 0 24 24"
         xmlns="http://www.w3.org/2000/svg"
@@ -34,62 +36,3 @@
 </nav>
 
 <script src="../utils/flavour-selector.ts"></script>
-
-<style>
-  body {
-    &.latte .flavour-selector .latte,
-    &.frappe .flavour-selector .frappe,
-    &.macchiato .flavour-selector .macchiato,
-    &.mocha .flavour-selector .mocha,
-    &.unthemed .flavour-selector .unthemed {
-      background-color: var(--ctp-pink);
-      color: var(--ctp-base);
-    }
-  }
-  section {
-    margin: 10px;
-  }
-  nav {
-    background-color: var(--ctp-mantle);
-    justify-content: space-between;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: var(--navbar-height);
-  }
-  .center {
-    display: flex;
-    align-items: center;
-  }
-  h1 {
-    font-family: "Pacifico", sans-serif;
-    font-size: 1.5rem;
-    margin: 0 0 0.4rem 0;
-    display: inline-block;
-  }
-  .logo {
-    margin-right: 20px;
-  }
-  .flavour-selector > button {
-    padding: 10px;
-    margin-right: 5px;
-    background-color: var(--ctp-crust);
-    transition: all 0.3s;
-
-    &:hover {
-      background-color: var(--ctp-pink);
-      color: var(--ctp-base);
-    }
-  }
-  .github-icon {
-    width: 40px;
-    margin-left: 14px;
-    margin-right: 5px;
-    fill: var(--ctp-overlay2);
-    transition: all 0.3s;
-
-    &:hover {
-      fill: var(--ctp-overlay0);
-    }
-  }
-</style>

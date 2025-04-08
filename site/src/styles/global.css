@@ -1,0 +1,46 @@
+@import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Pacifico&display=swap");
+
+@import "tailwindcss";
+@import "@catppuccin/tailwindcss/docs/src/styles/palette.css";
+@import "@catppuccin/tailwindcss/docs/src/styles/tailwind.config.css";
+
+@theme {
+  --font-pacifico: "Pacifico", sans-serif;
+  --font-lexend: "Lexend", sans-serif;
+  --navbar-height: 5rem;
+}
+
+@layer base {
+  body {
+    @apply bg-ctp-base text-ctp-text font-lexend;
+  }
+  .card {
+    @apply hidden;
+
+    &.latte {
+      @apply in-[.latte]:block;
+    }
+    &.frappe {
+      @apply in-[.frappe]:block;
+    }
+    &.macchiato {
+      @apply in-[.macchiato]:block;
+    }
+    &.mocha {
+      @apply in-[.mocha]:block;
+    }
+    &.unthemed {
+      @apply in-[.unthemed]:block;
+    }
+  }
+}
+
+@layer components {
+  .btn {
+    @apply rounded-lg p-3 mr-1 bg-ctp-crust transition-colors duration-300 hover:!bg-ctp-pink hover:!text-ctp-base ring-1 ring-ctp-surface0;
+    &.active {
+      @apply bg-ctp-pink/20 ring-1 ring-ctp-pink;
+    }
+  }
+}

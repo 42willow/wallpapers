@@ -18,7 +18,7 @@ const imageMetadata = await images[imagePath]();
 ---
 
 <div class="card" class:list={flavour}>
-  <h2>{name}</h2>
+  <h2 class="text-xl">{name.replaceAll("_", " ")}</h2>
   {
     author && (
       <p>
@@ -30,29 +30,12 @@ const imageMetadata = await images[imagePath]();
     src={imageMetadata.default.src}
     alt={author ? `${name} by ${author}` : name}
     width={800}
-    class="wallpaper"
+    class="rounded-lg"
   />
   <!-- <Image
     src={images[imagePath]()}
     alt={author ? `${name} by ${author}` : name}
     width={800}
-    class="wallpaper"
+    class="rounded-lg"
   /> -->
 </div>
-
-<style>
-  .wallpaper {
-    border-radius: var(--br);
-  }
-
-  .card {
-    display: none;
-  }
-  body.latte .card.latte,
-  body.frappe .card.frappe,
-  body.macchiato .card.macchiato,
-  body.mocha .card.mocha,
-  body.unthemed .card.unthemed {
-    display: block;
-  }
-</style>
