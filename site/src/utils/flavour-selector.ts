@@ -4,12 +4,14 @@ applyTheme("macchiato");
 
 // flavour selector listeners
 flavours.forEach((flavour) => {
-  let btn = document.querySelector(
+  let btn = document.querySelectorAll(
     `#flavour-selector > #${flavour}`,
-  ) as HTMLButtonElement;
-  btn.onclick = () => {
-    applyTheme(flavour);
-  };
+  ) as NodeListOf<HTMLButtonElement>;
+  btn.forEach((btn) => {
+    btn.onclick = () => {
+      applyTheme(flavour);
+    };
+  });
 });
 
 function applyTheme(theme: string) {
@@ -19,7 +21,7 @@ function applyTheme(theme: string) {
     btn.classList.remove("active");
   });
   // set active button
-  document
-    .querySelector(`#flavour-selector > #${theme}`)
-    ?.classList.add("active");
+  document.querySelectorAll(`#flavour-selector > #${theme}`)?.forEach((btn) => {
+    btn.classList.add("active");
+  });
 }
