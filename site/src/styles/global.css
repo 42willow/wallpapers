@@ -8,7 +8,8 @@
 @theme {
   --font-pacifico: "Pacifico", sans-serif;
   --font-lexend: "Lexend", sans-serif;
-  --navbar-height: 5rem;
+  --nav-h-desktop: 5rem;
+  --nav-h-mobile: 10rem;
 }
 
 @layer base {
