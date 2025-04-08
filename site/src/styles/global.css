@@ -39,7 +39,7 @@
 
 @layer components {
   .btn {
-    @apply rounded-lg p-3 mr-1 bg-ctp-crust transition-colors duration-300 hover:!bg-ctp-pink hover:!text-ctp-base ring-1 ring-ctp-surface0;
+    @apply rounded-lg p-1.5 text-sm sm:text-base bg-ctp-crust transition-colors duration-300 hover:!bg-ctp-pink hover:!text-ctp-base ring-1 ring-ctp-surface0;
     &.active {
       @apply bg-ctp-pink/20 ring-1 ring-ctp-pink;
     }
