@@ -13,6 +13,8 @@ interface Props {
 const { images, imagePath, name, flavour, author } = Astro.props;
 if (!images[imagePath])
   throw new Error(`"${imagePath}" does not exist in glob`);
+
+const imageMetadata = await images[imagePath]();
 ---
 
 <div class="card" class:list={flavour}>
@@ -24,16 +26,33 @@ if (!images[imagePath])
       </p>
     )
   }
-  <Image
-    src={images[imagePath]()}
+  <img
+    src={imageMetadata.default.src}
     alt={author ? `${name} by ${author}` : name}
-    width={400}
+    width={800}
     class="wallpaper"
   />
+  <!-- <Image
+    src={images[imagePath]()}
+    alt={author ? `${name} by ${author}` : name}
+    width={800}
+    class="wallpaper"
+  /> -->
 </div>
 
 <style>
   .wallpaper {
     border-radius: var(--br);
+  }
+
+  .card {
+    display: none;
+  }
+  body.latte .card.latte,
+  body.frappe .card.frappe,
+  body.macchiato .card.macchiato,
+  body.mocha .card.mocha,
+  body.unthemed .card.unthemed {
+    display: block;
   }
 </style>

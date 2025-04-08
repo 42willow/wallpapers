@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" style="background-color: var(--ctp-base);">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -7,24 +7,45 @@
     <meta name="generator" content={Astro.generator} />
     <title>willow's wallpaper dump</title>
   </head>
-  <body>
+  <body class="macchiato">
     <slot />
   </body>
 </html>
 
-<style>
+<style is:global>
   @import url("https://unpkg.com/@catppuccin/palette/css/catppuccin.css");
+  @import url("https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&family=Pacifico&display=swap");
+  @import url("./ctp.css");
 
   html,
   body {
+    font-family: "Lexend", sans-serif;
     margin: 0;
     width: 100%;
-    height: 100%;
-    background-color: var(--ctp-macchiato-base);
-    color: var(--ctp-macchiato-text);
+    height: max-content;
+    background-color: var(--ctp-base);
+    color: var(--ctp-text);
+    transition: all 0.3s;
   }
 
   :root {
     --br: 8px;
+  }
+
+  a {
+    color: var(--ctp-pink);
+  }
+
+  /* reset to default styles */
+  button {
+    font: inherit;
+    font-feature-settings: inherit;
+    font-variation-settings: inherit;
+    letter-spacing: inherit;
+    color: inherit;
+    border-radius: var(--br);
+    background-color: transparent;
+    opacity: 1;
+    border: 0 solid;
   }
 </style>

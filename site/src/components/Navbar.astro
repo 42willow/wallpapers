@@ -33,12 +33,24 @@
   </section>
 </nav>
 
+<script src="../utils/flavour-selector.ts"></script>
+
 <style>
+  body {
+    &.latte .flavour-selector .latte,
+    &.frappe .flavour-selector .frappe,
+    &.macchiato .flavour-selector .macchiato,
+    &.mocha .flavour-selector .mocha,
+    &.unthemed .flavour-selector .unthemed {
+      background-color: var(--ctp-pink);
+      color: var(--ctp-base);
+    }
+  }
   section {
     margin: 10px;
   }
   nav {
-    background-color: var(--ctp-macchiato-mantle);
+    background-color: var(--ctp-mantle);
     justify-content: space-between;
   }
   .center {
@@ -46,7 +58,9 @@
     align-items: center;
   }
   h1 {
-    margin: 0px;
+    font-family: "Pacifico", sans-serif;
+    font-size: 1.5rem;
+    margin: 0 0 0.4rem 0;
     display: inline-block;
   }
   .logo {
@@ -55,41 +69,23 @@
   .flavour-selector > button {
     padding: 10px;
     margin-right: 5px;
-    background-color: var(--ctp-macchiato-crust);
+    background-color: var(--ctp-crust);
     transition: all 0.3s;
 
     &:hover {
-      background-color: var(--ctp-macchiato-pink);
-      color: var(--ctp-macchiato-base);
+      background-color: var(--ctp-pink);
+      color: var(--ctp-base);
     }
   }
   .github-icon {
     width: 40px;
     margin-left: 14px;
     margin-right: 5px;
-    fill: var(--ctp-macchiato-overlay2);
+    fill: var(--ctp-overlay2);
     transition: all 0.3s;
 
     &:hover {
-      fill: var(--ctp-macchiato-overlay0);
+      fill: var(--ctp-overlay0);
     }
-  }
-
-  /* reset to default styles */
-  button {
-    font: inherit;
-    font-feature-settings: inherit;
-    font-variation-settings: inherit;
-    letter-spacing: inherit;
-    color: inherit;
-    border-radius: var(--br);
-    background-color: transparent;
-    opacity: 1;
-    border: 0 solid;
-  }
-  a {
-    color: inherit;
-    -webkit-text-decoration: inherit;
-    text-decoration: inherit;
   }
 </style>
