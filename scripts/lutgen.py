@@ -13,7 +13,12 @@ def main(input_dir, output_dir, input_flavour=None):
         # for every file in the input directory and its subdirectories
         for root, dirs, files in os.walk(input_dir):
             for file in files:
-                if any(file.endswith(ext) for ext in ["jpg", "jpeg", "png"]):
+                if any(file.endswith(ext) for ext in [
+                    "jpg",
+                    "jpeg",
+                    "png",
+                    "gif"
+                ]):
                     input_path = os.path.join(root, file)
                     # print("input_path: " + input_path)
                     relative_path = os.path.relpath(input_path, input_dir)

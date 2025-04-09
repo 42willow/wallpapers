@@ -4,13 +4,18 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default";
+    lutgen-rs = {
+      url = "github:ozwaldorf/lutgen-rs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     self,
     nixpkgs,
     systems,
-  }: let
+    ...
+  } @ inputs: let
     inherit (nixpkgs) lib;
 
     genSystems = lib.genAttrs (import systems);
@@ -20,7 +25,7 @@
     overlays.default = _: prev: let
       genFlavour = flavour:
         prev.callPackage ./nix/builder.nix {
-          inherit flavour version;
+          inherit flavour version inputs;
         };
     in {
       full = genFlavour null; # includes all flavours and unthemed

@@ -6,6 +6,7 @@
   flavour ? null,
   version,
   pkgs,
+  inputs,
   ...
 }: let
   pname =
@@ -15,7 +16,7 @@
 
   lutApply = pkgs.writers.writePython3Bin "lut-apply" {} (
     pkgs.replaceVars ../scripts/lutgen.py {
-      lutgen = lib.getExe pkgs.lutgen;
+      lutgen = lib.getExe' inputs.lutgen-rs.packages.${pkgs.system}.default "lutgen";
     }
   );
 in
