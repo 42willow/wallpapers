@@ -31,7 +31,9 @@ const walls = Object.keys(images)
 
 <div id="container">
   <main>
-    <section id="gallery">
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-8"
+    >
       {
         walls.map((item) => (
           <Card
@@ -43,6 +45,6 @@ const walls = Object.keys(images)
           />
         ))
       }
-    </section>
+    </div>
   </main>
 </div>

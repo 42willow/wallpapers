@@ -20,19 +20,19 @@
     @apply hidden;
 
     &.latte {
-      @apply in-[.latte]:block;
+      @apply in-[.latte]:inline-block;
     }
     &.frappe {
-      @apply in-[.frappe]:block;
+      @apply in-[.frappe]:inline-block;
     }
     &.macchiato {
-      @apply in-[.macchiato]:block;
+      @apply in-[.macchiato]:inline-block;
     }
     &.mocha {
-      @apply in-[.mocha]:block;
+      @apply in-[.mocha]:inline-block;
     }
     &.unthemed {
-      @apply in-[.unthemed]:block;
+      @apply in-[.unthemed]:inline-block;
     }
   }
 }

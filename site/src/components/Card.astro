@@ -18,24 +18,38 @@ const imageMetadata = await images[imagePath]();
 ---
 
 <div class="card" class:list={flavour}>
-  <h2 class="text-xl">{name.replaceAll("_", " ")}</h2>
+  <!-- <h2 class="text-xl">{name.replaceAll("_", " ")}</h2>
   {
     author && (
       <p>
         <strong>author:</strong> {author}
       </p>
     )
-  }
-  <img
-    src={imageMetadata.default.src}
-    alt={author ? `${name} by ${author}` : name}
-    width={800}
-    class="rounded-lg"
-  />
-  <!-- <Image
+  } -->
+  <div class="group relative rounded-lg overflow-hidden">
+    <img
+      src={imageMetadata.default.src}
+      alt={author ? `${name} by ${author}` : name}
+      width={800}
+    />
+    <!-- <Image
     src={images[imagePath]()}
     alt={author ? `${name} by ${author}` : name}
     width={800}
     class="rounded-lg"
-  /> -->
+    /> -->
+    <div
+      class="flex justify-between p-3 absolute bg-ctp-surface0/80 transition-opacity duration-300 group-hover:opacity-100 opacity-0 top-0 left-0 w-full min-h-12"
+    >
+      <div>
+        <span class="font-bold">{name.replaceAll("_", " ")}</span>
+        <span>{author ? `by ${author}` : ""}</span>
+      </div>
+      <div>
+        <span class=""
+          >{imageMetadata.default.width} x {imageMetadata.default.height} pixels</span
+        >
+      </div>
+    </div>
+  </div>
 </div>
