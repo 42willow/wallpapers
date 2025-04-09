@@ -8,16 +8,24 @@ interface Props {
   name: string;
   flavour: string;
   author?: string;
+  class?: string;
 }
 
-const { images, imagePath, name, flavour, author } = Astro.props;
+const {
+  images,
+  imagePath,
+  name,
+  flavour,
+  author,
+  class: className,
+} = Astro.props;
 if (!images[imagePath])
   throw new Error(`"${imagePath}" does not exist in glob`);
 
 const imageMetadata = await images[imagePath]();
 ---
 
-<div class="card" class:list={flavour}>
+<div class:list={["card", className, flavour]}>
   <!-- <h2 class="text-xl">{name.replaceAll("_", " ")}</h2>
   {
     author && (
