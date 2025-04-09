@@ -21,7 +21,6 @@ jobs:
         id: nix-cache
         with:
           primary-key: nix-${{ runner.os }}-${{ hashFiles('**/*.nix', '**/flake.lock', 'scripts/**/*', 'wallpapers/**/*') }}
-          restore-prefixes-first-match: nix-${{ runner.os }}-
 
       - if: ${{ steps.nix-cache.outputs.hit-primary-key == 'false' }}
         id: nix-build
