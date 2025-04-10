@@ -34,7 +34,7 @@ const walls = Object.keys(images)
     walls.map((item) => (
       <Card
         images={images}
-        imagePath={item.path}
+        imgPath={item.path}
         name={item.name as string}
         flavour={item.flavour as string}
         author={item.author}
@@ -52,7 +52,7 @@ const walls = Object.keys(images)
 <script>
   document.querySelectorAll(".card").forEach((card) => {
     card.addEventListener("click", () => {
-      const imgPath = card.getAttribute("data-imagePath");
+      const imgPath = card.getAttribute("data-imgPath");
       if (imgPath) {
         openDialog(imgPath);
       }
@@ -87,29 +87,37 @@ const walls = Object.keys(images)
       `;
     dialog.appendChild(loading);
 
-    const img = document.createElement("img");
-    img.src = imgPath;
-    img.classList.add(
-      "mx-auto",
-      "mt-4",
-      "max-w-[95vw]",
-      "max-h-[70vh]",
-      "object-contain",
-      "rounded-lg",
-      "shadow-lg",
-      "relative",
-      "z-20",
-      "transition-opacity",
-      "duration-300",
-      "opacity-100",
+    const images = import.meta.glob<{ default: ImageMetadata }>(
+      "/src/assets/**/*.{jpeg,jpg,png,gif}",
     );
-    img.alt = "wallpaper";
-    img.addEventListener("click", (e) => {
-      e.stopPropagation();
-    });
-    img.addEventListener("load", () => {
-      loading.remove();
-      dialog.appendChild(img);
+    if (!images[imgPath])
+      throw new Error(`"${imgPath}" does not exist in glob`);
+    images[imgPath]().then((module) => {
+      const img = document.createElement("img");
+
+      img.src = module.default.src;
+      img.classList.add(
+        "mx-auto",
+        "mt-4",
+        "max-w-[95vw]",
+        "max-h-[70vh]",
+        "object-contain",
+        "rounded-lg",
+        "shadow-lg",
+        "relative",
+        "z-20",
+        "transition-opacity",
+        "duration-300",
+        "opacity-100",
+      );
+      img.alt = "wallpaper";
+      img.addEventListener("click", (e) => {
+        e.stopPropagation();
+      });
+      img.addEventListener("load", () => {
+        loading.remove();
+        dialog.appendChild(img);
+      });
     });
   }
 

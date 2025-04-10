@@ -4,7 +4,7 @@ import { Image } from "astro:assets";
 
 interface Props {
   images: Record<string, () => Promise<{ default: ImageMetadata }>>;
-  imagePath: string;
+  imgPath: string;
   name: string;
   flavour: string;
   author?: string;
@@ -13,39 +13,28 @@ interface Props {
 
 const {
   images,
-  imagePath,
+  imgPath,
   name,
   flavour,
   author,
   class: className,
 } = Astro.props;
-if (!images[imagePath])
-  throw new Error(`"${imagePath}" does not exist in glob`);
-
-const imageMetadata = await images[imagePath]();
+if (!images[imgPath]) throw new Error(`"${imgPath}" does not exist in glob`);
 ---
 
-<div class:list={["card", className, flavour]} data-imagePath={imagePath}>
+<div class:list={["card", className, flavour]} data-imgPath={imgPath}>
   <div class="group relative rounded-lg overflow-hidden">
     <Image
-      src={images[imagePath]()}
+      src={images[imgPath]()}
       alt={author ? `${name} by ${author}` : name}
       width={800}
       quality={"mid"}
       class="wallpaper"
     />
     <div
-      class="flex justify-between p-3 absolute bg-ctp-surface0/80 transition-opacity duration-300 group-hover:opacity-100 opacity-0 top-0 left-0 w-full min-h-12"
+      class="p-3 absolute bg-ctp-surface0/80 transition-opacity duration-300 group-hover:opacity-100 opacity-0 top-0 left-0 w-full min-h-12"
     >
-      <div>
-        <span class="font-bold">{name.replaceAll("_", " ")}</span>
-        <span>{author ? `by ${author}` : ""}</span>
-      </div>
-      <div>
-        <span class=""
-          >{imageMetadata.default.width} x {imageMetadata.default.height} pixels</span
-        >
-      </div>
+      <span class="font-bold">{name.replaceAll("_", " ")}</span>
     </div>
   </div>
 </div>
