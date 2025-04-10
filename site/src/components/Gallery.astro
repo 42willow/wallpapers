@@ -116,7 +116,7 @@ const walls = Object.keys(images)
         e.stopPropagation();
       });
       img.addEventListener("load", () => {
-        loading.remove();
+        dialog.innerHTML = "";
         dialog.appendChild(img);
       });
     });
