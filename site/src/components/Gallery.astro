@@ -67,6 +67,7 @@ const walls = Object.keys(images)
     if (!dialog) return;
     dialog.open = true;
     dialog.classList.replace("hidden", "block");
+    dialog.innerHTML = "";
 
     const loading = document.createElement("div");
     loading.classList.add(
