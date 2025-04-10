@@ -8,9 +8,9 @@ flavours.forEach((flavour) => {
     `#flavour-selector > #${flavour}`,
   ) as NodeListOf<HTMLButtonElement>;
   btn.forEach((btn) => {
-    btn.onclick = () => {
+    btn.addEventListener("click", () => {
       applyTheme(flavour);
-    };
+    });
   });
 });
 
