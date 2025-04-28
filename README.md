@@ -100,10 +100,7 @@ $ nix profile install github:42willow/wallpapers#full
 
 ## Previews
 
-> [!NOTE]
-> Website coming soon™
->
-> In the meantime you can preview the wallpapers at https://github.com/42willow/walls-bak.
+Check out the [website](https://42willow.github.io/wallpapers/)!
 
 ## Credits
 
