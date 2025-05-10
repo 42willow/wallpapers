@@ -1,8 +1,8 @@
 <h3 align="center">
-  <img src="https://github.com/42willow/flake/blob/main/docs/assets/flake.png?raw=true" width="100" alt="Nix Logo" /><br />
-  <img src="https://github.com/42willow/flake/blob/main/docs/assets/transparent.png?raw=true" height="30" width="0px" alt="" />
+  <img src="https://github.com/42willow/flake/blob/main/docs/public/flake-macchiato.png?raw=true" width="100" alt="Nix Logo" /><br />
+  <img src="https://github.com/42willow/flake/blob/main/docs/public/transparent.png?raw=true" height="30" width="0px" alt="" />
   willow's wallpaper dump
-  <img src="https://github.com/42willow/flake/blob/main/docs/assets/transparent.png?raw=true" height="30" width="0px" alt="" />
+  <img src="https://github.com/42willow/flake/blob/main/docs/public/transparent.png?raw=true" height="30" width="0px" alt="" />
 </h3>
 
 <h6 align="center">
@@ -15,7 +15,7 @@
 
 <p align="center">
   <img
-    src="https://github.com/42willow/flake/blob/main/docs/assets/macchiato.png?raw=true"
+    src="https://github.com/42willow/flake/blob/main/docs/public/macchiato.png?raw=true"
     width="400"
     alt="Catppuccin Macchiato Palette"
   />
