@@ -1,5 +1,4 @@
-# full credit to https://github.com/NotAShelf/wallpkgs/blob/e5a34ff48313b6ae38ac72da02f889ed8985d76b/nix/builder.nix
-# license: MIT
+# originally inspired by https://github.com/NotAShelf/wallpkgs/blob/e5a34ff48313b6ae38ac72da02f889ed8985d76b/nix/builder.nix
 {
   lib,
   stdenvNoCC,
@@ -48,6 +47,5 @@ in
       description = "wallpapers- catppuccin-ified!";
       license = lib.licenses.mit;
       platforms = lib.platforms.all;
-      # maintainers = with lib.maintainers; [_42willow]; TODO)) maintain a nixpkg
     };
   }

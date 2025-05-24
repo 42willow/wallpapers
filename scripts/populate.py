@@ -26,7 +26,7 @@ post = """
 
 ## Credits
 
-A huge thanks to [NotAShelf](https://github.com/NotAShelf) for his [wallpkgs](https://github.com/NotAShelf/wallpkgs) ([MIT License](https://github.com/NotAShelf/wallpkgs/blob/81459dfc37c4420b7908a90a333d2643f24bec33/nix/builder.nix#L43)) that this is based on.
+A huge thanks to [NotAShelf](https://github.com/NotAShelf) for his [wallpkgs](https://github.com/NotAShelf/wallpkgs) that this was originally based on.
 I would recommend checking out his projects and maybe even giving them a star!
 
 All images are sourced from the internet and are not my own work. If you are the original artist and would like me to remove your work, please contact me via email at `42willow [at] pm [dot] me`.
